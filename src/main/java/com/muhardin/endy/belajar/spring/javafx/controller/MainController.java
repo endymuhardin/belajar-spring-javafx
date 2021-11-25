@@ -5,20 +5,17 @@ import com.muhardin.endy.belajar.spring.javafx.entity.Contact;
 import com.muhardin.endy.belajar.spring.javafx.entity.JenisKelamin;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 @Component @Slf4j @FxmlView
-public class MainController implements Initializable {
+public class MainController {
 
     @Autowired private ContactDao contactDao;
 
@@ -31,8 +28,8 @@ public class MainController implements Initializable {
     @FXML private TextArea txtAlamat;
     @FXML private ComboBox<String> cbProvinsi;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    public void initialize() {
         List<String> daftarProvinsi = new ArrayList<>();
         daftarProvinsi.add("DKI Jakarta");
         daftarProvinsi.add("Jawa Barat");
@@ -51,9 +48,14 @@ public class MainController implements Initializable {
                 .build();
 
         contactDao.save(ct);
+        clearForm();
     }
 
     public void btnResetClicked() {
+        clearForm();
+    }
+
+    private void clearForm() {
         txtNama.setText(null);
         txtEmail.setText(null);
         txtNoHp.setText(null);
