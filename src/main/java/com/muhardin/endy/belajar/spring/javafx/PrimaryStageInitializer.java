@@ -1,6 +1,7 @@
 package com.muhardin.endy.belajar.spring.javafx;
 
 import com.muhardin.endy.belajar.spring.javafx.controller.FormContactController;
+import com.muhardin.endy.belajar.spring.javafx.controller.HomeController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,7 +25,7 @@ public class PrimaryStageInitializer implements ApplicationListener<StageReadyEv
     public void onApplicationEvent(StageReadyEvent event) {
         log.debug("Running StageReadyEvent handler");
         Stage stage = event.stage;
-        Parent root = fxWeaver.loadView(FormContactController.class);
+        Parent root = fxWeaver.loadView(HomeController.class);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

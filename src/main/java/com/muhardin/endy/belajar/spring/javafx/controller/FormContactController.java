@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.List;
 @Component @Slf4j @FxmlView
 public class FormContactController {
 
+    @Autowired private ApplicationContext applicationContext;
     @Autowired private ContactDao contactDao;
 
     @FXML private TextField txtNama;
@@ -49,6 +51,8 @@ public class FormContactController {
 
         contactDao.save(ct);
         clearForm();
+        HomeController homeController = applicationContext.getBean(HomeController.class);
+        homeController.populateContactTable();
     }
 
     public void btnResetClicked() {
