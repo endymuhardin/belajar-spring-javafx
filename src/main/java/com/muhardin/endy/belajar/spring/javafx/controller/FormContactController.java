@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component @Slf4j @FxmlView
-public class MainController {
+public class FormContactController {
 
     @Autowired private ContactDao contactDao;
 
