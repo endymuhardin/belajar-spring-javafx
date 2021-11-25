@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.muhardin.endy.belajar.spring.javafx.controller.MainController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,7 +37,7 @@
       <Label text="Tanggal Lahir" GridPane.rowIndex="3" />
       <Label text="Jenis Kelamin" GridPane.rowIndex="4" />
       <Label text="Alamat" GridPane.rowIndex="5" />
-      <Label text="Provinsi/Kabupaten" GridPane.rowIndex="6" />
+      <Label text="Provinsi" GridPane.rowIndex="6" />
       <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="txtNoHp" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <DatePicker fx:id="dtTanggalLahir" prefWidth="305.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -55,8 +55,8 @@
       <ComboBox fx:id="cbProvinsi" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <FlowPane alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
          <children>
-            <Button mnemonicParsing="false" text="Save" />
-            <Button mnemonicParsing="false" text="Reset" />
+            <Button mnemonicParsing="false" onAction="#btnSaveClicked" text="Save" />
+            <Button mnemonicParsing="false" onAction="#btnResetClicked" text="Reset" />
          </children>
       </FlowPane>
    </children>
