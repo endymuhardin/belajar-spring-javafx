@@ -1,5 +1,6 @@
 package com.muhardin.endy.belajar.spring.javafx.controller;
 
+import com.muhardin.endy.belajar.spring.javafx.dao.ContactDao;
 import com.muhardin.endy.belajar.spring.javafx.entity.Contact;
 import com.muhardin.endy.belajar.spring.javafx.entity.JenisKelamin;
 import javafx.collections.FXCollections;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import lombok.extern.slf4j.Slf4j;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -17,7 +19,9 @@ import java.util.ResourceBundle;
 
 @Component @Slf4j @FxmlView
 public class MainController implements Initializable {
-    @FXML private Button btnSave;
+
+    @Autowired private ContactDao contactDao;
+
     @FXML private TextField txtNama;
     @FXML private TextField txtEmail;
     @FXML private TextField txtNoHp;
@@ -46,7 +50,7 @@ public class MainController implements Initializable {
                 .provinsi(cbProvinsi.getSelectionModel().getSelectedItem())
                 .build();
 
-        System.out.println("Contact : "+ct.toString());
+        contactDao.save(ct);
     }
 
     public void btnResetClicked() {
