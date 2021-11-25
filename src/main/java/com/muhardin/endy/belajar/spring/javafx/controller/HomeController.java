@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 public class HomeController {
 
     @Autowired private ContactDao contactDao;
+    @Autowired private FormContactController formContactController;
 
     @FXML
     private TableView<Contact> tblContact;
@@ -31,6 +33,14 @@ public class HomeController {
         colNama.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNama()));
         colEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEmail()));
         colNoHp.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNoHp()));
+
+        tblContact.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        tblContact.getSelectionModel().selectedItemProperty().addListener((observableValue, oldSelection, newSelection) -> {
+            if(newSelection != null) {
+                formContactController.setContact(newSelection);
+            }
+        });
+
         populateContactTable();
     }
 

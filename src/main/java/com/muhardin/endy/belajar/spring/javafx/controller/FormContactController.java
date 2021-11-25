@@ -29,6 +29,8 @@ public class FormContactController {
     @FXML private TextArea txtAlamat;
     @FXML private ComboBox<String> cbProvinsi;
 
+    private Contact contact = new Contact();
+
     @FXML
     public void initialize() {
         List<String> daftarProvinsi = new ArrayList<>();
@@ -47,7 +49,9 @@ public class FormContactController {
                 .alamat(txtAlamat.getText())
                 .provinsi(cbProvinsi.getSelectionModel().getSelectedItem())
                 .build();
-
+        if (contact.getId() != null) {
+            ct.setId(contact.getId());
+        }
         contactDao.save(ct);
         clearForm();
         homeController.populateContactTable();
@@ -57,7 +61,8 @@ public class FormContactController {
         clearForm();
     }
 
-    private void clearForm() {
+    public void clearForm() {
+        this.contact = new Contact();
         txtNama.setText(null);
         txtEmail.setText(null);
         txtNoHp.setText(null);
@@ -66,5 +71,17 @@ public class FormContactController {
         rbWanita.setSelected(false);
         txtAlamat.setText(null);
         cbProvinsi.getSelectionModel().clearSelection();
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+        txtNama.setText(contact.getNama());
+        txtEmail.setText(contact.getEmail());
+        txtNoHp.setText(contact.getNoHp());
+        dtTanggalLahir.setValue(contact.getTanggalLahir());
+        rbPria.setSelected(JenisKelamin.PRIA.equals(contact.getJenisKelamin()));
+        rbWanita.setSelected(JenisKelamin.WANITA.equals(contact.getJenisKelamin()));
+        txtAlamat.setText(contact.getAlamat());
+        cbProvinsi.getSelectionModel().select(contact.getProvinsi());
     }
 }
